@@ -33,9 +33,8 @@ def find_max_under_boundary(arr: list[int], top_boundary: int)  -> int:
     current_max = float("-inf")
     
     for i in range(len(arr)):
-        if arr[i] < top_boundary:
-            if arr[i] > current_max:
-                current_max = arr[i]
+        if arr[i] <= top_boundary and arr[i] > current_max:
+            current_max = arr[i]
     return current_max
 
 
@@ -46,6 +45,10 @@ def find_top_elements(arr: list[int], number_elem: int)  -> list[int]:
     
     for _ in range(number_elem):
         current_max = find_max_under_boundary(arr, prev_max)
+        
+        arr.remove(current_max)
+        
+        
         prev_max = current_max
         top_elemets.append(current_max)
     return top_elemets
@@ -53,4 +56,5 @@ def find_top_elements(arr: list[int], number_elem: int)  -> list[int]:
 # print(get_max_age(ages))
 # print(get_min_age(ages))
 # print(get_2_max_age(ages))
-print(find_top_elements(ages, 3))
+print(ages)
+print(find_top_elements(ages, len(ages)))
